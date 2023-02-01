@@ -14,7 +14,7 @@ print ('''
 Hi there!
 -----------------------------------------------
 I've generated a random 4 digit number for you.
-Let's play a bulls and cows game. You can always quit the game by pressing "q".
+Let's play a bulls and cows game. 
 -----------------------------------------------
 ''')
 
@@ -49,8 +49,10 @@ bulls = 0
 display_number = input ('Do you want to see the secret number before guessing? Y/N: ')
 if display_number == 'Y'.casefold():
     print ('Coward, the secret number is: ', secret_int)
+    print ('You can always quit the game by pressing "q".')
 else:
     print('No help? So proud of you!!')
+    print('You can always quit the game by pressing "q".')
     separator
 
 # CHECK, IF THE NUMBER HAS 4 SYMBOLS, DOES NOT START WITH 0 OR IS NOT STR. 
