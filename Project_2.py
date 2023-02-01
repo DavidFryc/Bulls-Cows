@@ -128,7 +128,7 @@ while game_on:
             end2=time.time()
             #print (round(end2-start, 2))
             print('Despite that you needed', len(guessed)+len(first_zero)+len(too_long)+len(too_short)\
-                +len(non_digits),'attempts', round(end2-start, 2),'and seconds.')
+                +len(non_digits),'attempts and', round(end2-start, 2),'seconds.')
             print('')
             print('Real heros do it without help'.upper())
             print('')
