@@ -5,9 +5,10 @@ email: df@emd.dk
 discord: David F.#2019
 """
 
-#import os
+import os
 import time
 from random import choice
+os.system('cls')
 
 print ('''
 Hi there!
@@ -34,7 +35,6 @@ secret_list = [secret1, secret2, secret3, secret4]
 secret_int = ""
 for element in secret_list:
     secret_int += str(element)
-# print(int(secret_int))            REMOVE # TO SEE THE SECRET NUMBER AFTER START
 
 separator = ('-----------------------------------------------')
 game_on = True
@@ -50,7 +50,7 @@ display_number = input ('Do you want to see the secret number before guessing? Y
 if display_number == 'Y'.casefold():
     print ('Coward, the secret number is: ', secret_int)
 else:
-    print('So proud of you')
+    print('No help? So proud of you!!')
     separator
 
 # CHECK, IF THE NUMBER HAS 4 SYMBOLS, DOES NOT START WITH 0 OR IS NOT STR. 
@@ -121,7 +121,18 @@ while game_on:
             bulls +=1
 
 # FINISH, AS SOON AS ALL BULLS ARE IDENTIFIED   
-        if bulls == 4:
+        if bulls == 4 and display_number == 'y'.casefold():
+            print('Yeah, the number is correct! But you saw the number at the beginning.')
+            end2=time.time()
+            #print (round(end2-start, 2))
+            print('Despite that you needed', len(guessed)+len(first_zero)+len(too_long)+len(too_short)\
+                +len(non_digits),'attempts', round(end2-start, 2),'and seconds.')
+            print('')
+            print('Real heros do it without help'.upper())
+            print('')
+            break
+        
+        elif bulls == 4:
             print('Congratulations, you won!'.upper())
             end2=time.time()
             #print (round(end2-start, 2))
