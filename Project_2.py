@@ -7,6 +7,7 @@ discord: David F.#2019
 
 import os
 import time
+import random
 from random import choice
 os.system('cls')
 
@@ -18,26 +19,21 @@ Let's play a bulls and cows game.
 -----------------------------------------------
 ''')
 
-# RANDOM NUMBER AS LIST:
-start = time.time()
-numbers = list(range(1, 10))
-secret1 = choice(numbers)
-numbers.remove(secret1)
-numbers.append(0)
-secret2 = choice(numbers)
-numbers.remove(secret2)
-secret3 = choice(numbers)
-numbers.remove(secret3)
-secret4 = choice(numbers)
-secret_list = [secret1, secret2, secret3, secret4]
+# RANDOM NUMBER
+secret_number = random.sample(range(10), 4)
 
-# CONVERTS LIST TO ONE NUMBER
-secret_int = ""
-for element in secret_list:
+for first_zero in secret_number:
+    if secret_number[0] ==0:
+        random.shuffle(secret_number)
+
+secret_int = ''
+for element in secret_number:
     secret_int += str(element)
 
+# VARIABLES
 separator = ('-----------------------------------------------')
 game_on = True
+start=time.time()
 guessed = []
 first_zero = []
 too_long = []
@@ -64,6 +60,7 @@ while game_on:
         end1=time.time()
         print('Coward, you gave it up in', round(end1-start, 2), 'seconds after', len(guessed)+\
             len(first_zero)+len(too_long)+len(too_short)+len(non_digits), 'attempt(s)')
+        print('The secret number was:', secret_int)
         print(separator)
     elif not number.isdigit():
         print('Sorry, you need to enter a number...')
@@ -98,44 +95,42 @@ while game_on:
             print ('Already guessed numbers:', ', '.join(guessed))
             print(separator)
 
+
 # CALCULATING COWS:
-        if int(number[0]) in secret_list:
+        if int(number[0]) in secret_number:
             cows +=1
-        if int(number[1]) in secret_list:
+        if int(number[1]) in secret_number:
             cows +=1
-        if int(number[2]) in secret_list:
+        if int(number[2]) in secret_number:
             cows +=1
-        if int(number[3]) in secret_list:
+        if int(number[3]) in secret_number:
             cows +=1
 
 # CALCULATING BULLS:
-        if int(number[0]) == secret1:
+        if int(number[0]) == secret_number[0]:
             cows -=1
             bulls +=1
-        if int(number[1]) == secret2:
+        if int(number[1]) == secret_number[1]:
             cows -=1
             bulls +=1
-        if int(number[2]) == secret3:
+        if int(number[2]) == secret_number[2]:
             cows -=1
             bulls +=1
-        if int(number[3]) == secret4:
+        if int(number[3]) == secret_number[3]:
             cows -=1
             bulls +=1
 
-# FINISH, AS SOON AS ALL BULLS ARE IDENTIFIED   
+# FINISH AFTER ALL BULLS WERE IDENTIFIED   
         if bulls == 4 and display_number == 'y'.casefold():
             print('Yeah, the number is correct! But you saw the number at the beginning.')
             end2=time.time()
             #print (round(end2-start, 2))
-            print('Despite that you needed', len(guessed)+len(first_zero)+len(too_long)+len(too_short)\
-                +len(non_digits),'attempts and', round(end2-start, 2),'seconds.')
-            print('')
-            print('Real heros do it without help'.upper())
-            print('')
-            break
+            print('You needed', len(guessed)+len(first_zero)+len(too_long)+len(too_short)\
+                +len(non_digits),'attempt(s) and', round(end2-start, 2),'seconds.')
+            game_on = False
         
         elif bulls == 4:
-            print('Congratulations, you won!'.upper())
+            print('Congratulations, you won with no help!'.upper())
             end2=time.time()
             #print (round(end2-start, 2))
             print('You guessed the right number in'.upper(), len(guessed)+len(first_zero)+len(too_long)+len(too_short)\
