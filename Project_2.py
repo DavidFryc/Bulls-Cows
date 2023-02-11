@@ -39,6 +39,7 @@ first_zero = []
 too_long = []
 too_short = []
 non_digits = []
+duplicates = []
 cows = 0
 bulls = 0
 
@@ -67,11 +68,6 @@ while game_on:
         print ('Already guessed numbers:', ', '.join(guessed))
         print(separator)
         non_digits.append(number)
-    elif int(number[0]) == 0:
-        print('Sorry, the first number can not be zero...')
-        print ('Already guessed numbers:', ', '.join(guessed))
-        print(separator)
-        first_zero.append(number)
     elif len(number) > 4:
         print('Sorry, the number is too long...')
         print ('Already guessed numbers:', ', '.join(guessed))
@@ -82,6 +78,16 @@ while game_on:
         print ('Already guessed numbers:', ', '.join(guessed))
         print(separator)
         too_short.append(number) 
+    elif len(set(number)) != 4:
+        print('Sorry, the number can not contain duplicates...')
+        print ('Already guessed numbers:', ', '.join(guessed))
+        print(separator)
+        duplicates.append(number)
+    elif int(number[0]) == 0:
+        print('Sorry, the first number can not be zero...')
+        print ('Already guessed numbers:', ', '.join(guessed))
+        print(separator)
+        first_zero.append(number)
 
 # CHECK, IF THE GUESSED NUMBER WAS ALREADY GUESSED:        
     else:
@@ -94,7 +100,6 @@ while game_on:
             print ('This number was already guessed.')
             print ('Already guessed numbers:', ', '.join(guessed))
             print(separator)
-
 
 # CALCULATING COWS:
         if int(number[0]) in secret_number:
@@ -126,7 +131,7 @@ while game_on:
             end2=time.time()
             #print (round(end2-start, 2))
             print('You needed', len(guessed)+len(first_zero)+len(too_long)+len(too_short)\
-                +len(non_digits),'attempt(s) and', round(end2-start, 2),'seconds.')
+                +len(non_digits)+len(duplicates),'attempt(s) and', round(end2-start, 2),'seconds.')
             game_on = False
         
         elif bulls == 4:
@@ -134,7 +139,7 @@ while game_on:
             end2=time.time()
             #print (round(end2-start, 2))
             print('You guessed the right number in'.upper(), len(guessed)+len(first_zero)+len(too_long)+len(too_short)\
-                +len(non_digits),'attempt(s) and'.upper(), round(end2-start, 2),'seconds.'.upper())
+                +len(non_digits)+len(duplicates),'attempt(s) and'.upper(), round(end2-start, 2),'seconds.'.upper())
             game_on = False
         
         print('Bulls: ', bulls, 'Cows: ', cows)
