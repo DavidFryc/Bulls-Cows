@@ -60,7 +60,7 @@ while game_on:
         game_on = False
         end1=time.time()
         print('Coward, you gave it up in', round(end1-start, 2), 'seconds after', len(guessed)+\
-            len(first_zero)+len(too_long)+len(too_short)+len(non_digits), 'attempt(s)')
+            len(first_zero)+len(too_long)+len(too_short)+len(non_digits)+len(duplicates), 'attempt(s)')
         print('The secret number was:', secret_int)
         print(separator)
     elif not number.isdigit():
